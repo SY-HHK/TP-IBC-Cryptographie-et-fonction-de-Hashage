@@ -47,6 +47,10 @@ class App extends Component {
     aes = (msg, key) => {
         this.setState({result: CryptoJS.AES.encrypt(msg, key).toString()})
     }
+    aesDecrypt = (msg, key) => {
+        let bytes = CryptoJS.AES.decrypt(msg, key)
+        this.setState({result: bytes.toString(CryptoJS.enc.Utf8)})
+    }
 
     rsa = (msg, key) => {
         key = new NodeRSA(key)
@@ -70,6 +74,7 @@ class App extends Component {
                 keccak={this.keccak}
                 ripemd={this.ripemd}
                 aes={this.aes}
+                aesDecrypt={this.aesDecrypt}
                 rsa={this.rsa}
                 rsaDecrypt={this.rsaDecrypt}
             />

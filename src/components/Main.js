@@ -217,6 +217,39 @@ class Main extends Component {
                             </div>
                             <button type="submit" className="btn btn-primary btn-block btn-lg">Encrypt!</button>
                         </form>
+
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg, key
+                            msg = this.msgAESDecrypt.value.toString()
+                            key = this.keyAESDecrypt.value.toString()
+                            this.props.aesDecrypt(msg, key)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Decrypt a message in AES</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(msgAESDecrypt) => {
+                                        this.msgAESDecrypt = msgAESDecrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required/>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(keyAESDecrypt) => {
+                                        this.keyAESDecrypt = keyAESDecrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter key"
+                                    required/>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Decrypt!</button>
+                        </form>
                     </div>
 
                     <div className="tab-pane fade" id="rsa" role="tabpanel"
