@@ -26,6 +26,10 @@ class Main extends Component {
                         <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#keccak"
                            role="tab" aria-controls="pills-profile" aria-selected="false">KECCAK</a>
                     </li>
+                    <li className="nav-item" role="presentation">
+                        <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#ripemd"
+                           role="tab" aria-controls="pills-profile" aria-selected="false">RIPEMD</a>
+                    </li>
                 </ul>
 
                 <div className="tab-content" id="pills-tabContent">
@@ -130,6 +134,35 @@ class Main extends Component {
                         }}>
                             <div>
                                 <label className="float-left"><b>Hash a message in Keccak-512</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(msg) => {
+                                        this.msg = msg
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required/>
+                                <div className="input-group-append">
+                                    <div className="input-text">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Hash!</button>
+                        </form>
+                    </div>
+
+                    <div className="tab-pane fade" id="ripemd" role="tabpanel"
+                         aria-labelledby="pills-profile-tab">
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg
+                            msg = this.msg.value.toString()
+                            this.props.ripemd(msg)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Hash a message in RipeMD160</b></label>
                             </div>
                             <div className="input-group mb-4">
                                 <input
