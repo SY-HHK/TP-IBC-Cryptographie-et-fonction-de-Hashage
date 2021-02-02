@@ -4,6 +4,7 @@ import Main from './Main'
 import './App.css'
 import sha256 from 'crypto-js/sha256'
 import sha3 from 'crypto-js/sha3'
+import keccak from 'crypto-js/'
 
 class App extends Component {
 
@@ -30,6 +31,11 @@ class App extends Component {
         alert(sha3(msg))
     }
 
+    keccak = (msg) => {
+        const keccakHash = require('keccak')
+        alert(keccakHash('keccak256').update(msg).digest('hex'))
+    }
+
 
     render() {
         let content
@@ -40,6 +46,7 @@ class App extends Component {
                 md5={this.md5}
                 sha2={this.sha2}
                 sha3={this.sha3}
+                keccak={this.keccak}
             />
         }
 
