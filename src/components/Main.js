@@ -7,10 +7,6 @@ class Main extends Component {
             <div id="content" className="mt-3">
                 <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li className="nav-item" role="presentation">
-                        <a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#home"
-                           role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
-                    </li>
-                    <li className="nav-item" role="presentation">
                         <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#md5"
                            role="tab" aria-controls="pills-profile" aria-selected="false">MD5</a>
                     </li>
@@ -34,12 +30,13 @@ class Main extends Component {
                         <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#aes"
                            role="tab" aria-controls="pills-profile" aria-selected="false">AES</a>
                     </li>
+                    <li className="nav-item" role="presentation">
+                        <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#rsa"
+                           role="tab" aria-controls="pills-profile" aria-selected="false">RSA</a>
+                    </li>
                 </ul>
 
                 <div className="tab-content" id="pills-tabContent">
-                    <div className="tab-pane fade show active" id="home" role="tabpanel"
-                         aria-labelledby="pills-home-tab">Welcome to crypto tp
-                    </div>
 
                     <div className="tab-pane fade" id="md5" role="tabpanel"
                          aria-labelledby="pills-profile-tab">
@@ -221,6 +218,84 @@ class Main extends Component {
                             <button type="submit" className="btn btn-primary btn-block btn-lg">Encrypt!</button>
                         </form>
                     </div>
+
+                    <div className="tab-pane fade" id="rsa" role="tabpanel"
+                         aria-labelledby="pills-profile-tab">
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg, key
+                            msg = this.msgRsaEncrypt.value.toString()
+                            key = this.keyRsaEncrypt.value.toString()
+                            this.props.rsa(msg, key)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Encrypt a message in RSA</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(msgRsaEncrypt) => {
+                                        this.msgRsaEncrypt = msgRsaEncrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required/>
+                            </div>
+                            <div className="input-group mb-4">
+                                <textarea
+                                    ref={(keyRsaEncrypt) => {
+                                        this.keyRsaEncrypt = keyRsaEncrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter private key"
+                                    required>
+
+                                </textarea>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Encrypt!</button>
+                        </form>
+
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg, key
+                            msg = this.msgRsaDecrypt.value.toString()
+                            key = this.keyRsaDecrypt.value.toString()
+                            this.props.rsaDecrypt(msg, key)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Decrypt a message in RSA</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <textarea
+                                    type="text"
+                                    ref={(msgRsaDecrypt) => {
+                                        this.msgRsaDecrypt = msgRsaDecrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required>
+
+                                </textarea>
+                            </div>
+                            <div className="input-group mb-4">
+                                <textarea
+                                    ref={(keyRsaDecrypt) => {
+                                        this.keyRsaDecrypt = keyRsaDecrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter private key"
+                                    required>
+
+                                </textarea>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Decrypt!</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="exampleFormControlTextarea1">Result</label>
+                    <textarea className="form-control" value={this.props.result} rows="5"></textarea>
                 </div>
             </div>
         );

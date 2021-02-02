@@ -6,7 +6,8 @@ import sha256 from 'crypto-js/sha256'
 import sha3 from 'crypto-js/sha3'
 import ripemd160 from 'crypto-js/ripemd160'
 import AES from 'crypto-js/aes'
-var CryptoJS = require("crypto-js");
+const CryptoJS = require("crypto-js");
+const NodeRSA = require('node-rsa');
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            result:'None',
             loading: false
         }
     }
@@ -46,18 +48,30 @@ class App extends Component {
         alert(CryptoJS.AES.encrypt(msg, key).toString())
     }
 
+    rsa = (msg, key) => {
+        key = new NodeRSA(key)
+        this.setState({result: key.encrypt(msg, 'base64')})
+    }
+    rsaDecrypt = (msg, key) => {
+        key = new NodeRSA(key)
+        this.setState({result: key.decrypt(msg, 'utf8')})
+    }
+
     render() {
         let content
         if (this.state.loading) {
             content = <p id="loader" className="text-center">Loading...</p>
         } else {
             content = <Main
+                result={this.state.result}
                 md5={this.md5}
                 sha2={this.sha2}
                 sha3={this.sha3}
                 keccak={this.keccak}
                 ripemd={this.ripemd}
                 aes={this.aes}
+                rsa={this.rsa}
+                rsaDecrypt={this.rsaDecrypt}
             />
         }
 
