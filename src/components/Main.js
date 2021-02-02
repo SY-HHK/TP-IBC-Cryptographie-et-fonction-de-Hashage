@@ -34,6 +34,10 @@ class Main extends Component {
                         <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#rsa"
                            role="tab" aria-controls="pills-profile" aria-selected="false">RSA</a>
                     </li>
+                    <li className="nav-item" role="presentation">
+                        <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#blowfish"
+                           role="tab" aria-controls="pills-profile" aria-selected="false">Blowfish</a>
+                    </li>
                 </ul>
 
                 <div className="tab-content" id="pills-tabContent">
@@ -320,6 +324,73 @@ class Main extends Component {
                                     required>
 
                                 </textarea>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Decrypt!</button>
+                        </form>
+                    </div>
+
+                    <div className="tab-pane fade" id="blowfish" role="tabpanel"
+                         aria-labelledby="pills-profile-tab">
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg, key
+                            msg = this.msgBlowfishEncrypt.value.toString()
+                            key = this.keyBlowfishEncrypt.value.toString()
+                            this.props.blowFish(msg, key)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Encrypt a message in RSA</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(msgBlowfishEncrypt) => {
+                                        this.msgBlowfishEncrypt = msgBlowfishEncrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required/>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    ref={(keyBlowfishEncrypt) => {
+                                        this.keyBlowfishEncrypt = keyBlowfishEncrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter key"
+                                    required/>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Encrypt!</button>
+                        </form>
+
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg, key
+                            msg = this.msgBlowfishDecrypt.value.toString()
+                            key = this.keyBlowfishDecrypt.value.toString()
+                            this.props.blowFishDecrypt(msg, key)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Decrypt a message in RSA</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(msgBlowfishDecrypt) => {
+                                        this.msgBlowfishDecrypt = msgBlowfishDecrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required/>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    ref={(keyBlowfishDecrypt) => {
+                                        this.keyBlowfishDecrypt = keyBlowfishDecrypt
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter key"
+                                    required/>
                             </div>
                             <button type="submit" className="btn btn-primary btn-block btn-lg">Decrypt!</button>
                         </form>

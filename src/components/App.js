@@ -6,6 +6,7 @@ import sha256 from 'crypto-js/sha256'
 import sha3 from 'crypto-js/sha3'
 import ripemd160 from 'crypto-js/ripemd160'
 import AES from 'crypto-js/aes'
+import {Blowfish} from "javascript-blowfish";
 const CryptoJS = require("crypto-js");
 const NodeRSA = require('node-rsa');
 
@@ -61,6 +62,15 @@ class App extends Component {
         this.setState({result: key.decrypt(msg, 'utf8')})
     }
 
+    blowFish = (msg, key) => {
+        key = new Blowfish(key)
+        this.setState({result: key.encrypt(msg)})
+    }
+    blowFishDecrypt = (msg, key) => {
+        key = new Blowfish(key)
+        this.setState({result: key.trimZeros(key.decrypt(msg))})
+    }
+
     render() {
         let content
         if (this.state.loading) {
@@ -77,6 +87,8 @@ class App extends Component {
                 aesDecrypt={this.aesDecrypt}
                 rsa={this.rsa}
                 rsaDecrypt={this.rsaDecrypt}
+                blowFish={this.blowFish}
+                blowFishDecrypt={this.blowFishDecrypt}
             />
         }
 
