@@ -1,0 +1,22 @@
+{
+  "name": "tp-ibc-cryptographie-et-fonction-de-hashage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SY-HHK/TP-IBC-Cryptographie-et-fonction-de-Hashage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SY-HHK/TP-IBC-Cryptographie-et-fonction-de-Hashage/issues"
+  },
+  "homepage": "https://github.com/SY-HHK/TP-IBC-Cryptographie-et-fonction-de-Hashage#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
