@@ -1,9 +1,9 @@
 # TP-IBC-Cryptographie-et-fonction-de-Hashage
 
-## Instaltion
+## Installation
 
 npm install  
-node index.js
+node index.js (lance le serveur)
 
 ## Modification
 
