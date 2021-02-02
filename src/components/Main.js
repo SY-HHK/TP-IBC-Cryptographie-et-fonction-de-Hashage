@@ -30,6 +30,10 @@ class Main extends Component {
                         <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#ripemd"
                            role="tab" aria-controls="pills-profile" aria-selected="false">RIPEMD</a>
                     </li>
+                    <li className="nav-item" role="presentation">
+                        <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#aes"
+                           role="tab" aria-controls="pills-profile" aria-selected="false">AES</a>
+                    </li>
                 </ul>
 
                 <div className="tab-content" id="pills-tabContent">
@@ -179,6 +183,42 @@ class Main extends Component {
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-primary btn-block btn-lg">Hash!</button>
+                        </form>
+                    </div>
+
+                    <div className="tab-pane fade" id="aes" role="tabpanel"
+                         aria-labelledby="pills-profile-tab">
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg, key
+                            msg = this.msg.value.toString()
+                            key = this.key.value.toString()
+                            this.props.aes(msg, key)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Encrypt a message in AES</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(msg) => {
+                                        this.msg = msg
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required/>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(key) => {
+                                        this.key = key
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter key"
+                                    required/>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Encrypt!</button>
                         </form>
                     </div>
                 </div>

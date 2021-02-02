@@ -5,6 +5,8 @@ import './App.css'
 import sha256 from 'crypto-js/sha256'
 import sha3 from 'crypto-js/sha3'
 import ripemd160 from 'crypto-js/ripemd160'
+import AES from 'crypto-js/aes'
+var CryptoJS = require("crypto-js");
 
 class App extends Component {
 
@@ -40,6 +42,10 @@ class App extends Component {
         alert(ripemd160(msg))
     }
 
+    aes = (msg, key) => {
+        alert(CryptoJS.AES.encrypt(msg, key).toString())
+    }
+
     render() {
         let content
         if (this.state.loading) {
@@ -51,6 +57,7 @@ class App extends Component {
                 sha3={this.sha3}
                 keccak={this.keccak}
                 ripemd={this.ripemd}
+                aes={this.aes}
             />
         }
 
