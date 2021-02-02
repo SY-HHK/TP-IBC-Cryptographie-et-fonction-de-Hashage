@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Navbar from './Navbar'
 import Main from './Main'
 import './App.css'
+import sha256 from 'crypto-js/sha256'
+import sha3 from 'crypto-js/sha3'
 
 class App extends Component {
 
@@ -20,6 +22,14 @@ class App extends Component {
         alert(md5(msg))
     }
 
+    sha2 = (msg) => {
+        alert(sha256(msg))
+    }
+
+    sha3 = (msg) => {
+        alert(sha3(msg))
+    }
+
 
     render() {
         let content
@@ -28,6 +38,8 @@ class App extends Component {
         } else {
             content = <Main
                 md5={this.md5}
+                sha2={this.sha2}
+                sha3={this.sha3}
             />
         }
 
