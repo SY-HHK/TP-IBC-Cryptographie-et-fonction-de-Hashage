@@ -15,13 +15,19 @@ class App extends Component {
         }
     }
 
+    md5 = (msg) => {
+        const md5 = require('md5');
+        alert(md5(msg))
+    }
+
+
     render() {
         let content
         if (this.state.loading) {
             content = <p id="loader" className="text-center">Loading...</p>
         } else {
             content = <Main
-
+                md5={this.md5}
             />
         }
 

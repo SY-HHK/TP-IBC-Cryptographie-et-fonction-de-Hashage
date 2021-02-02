@@ -18,12 +18,39 @@ class Main extends Component {
 
                 <div className="tab-content" id="pills-tabContent">
                     <div className="tab-pane fade show active" id="pills-home" role="tabpanel"
-                         aria-labelledby="pills-home-tab">Welcome
+                         aria-labelledby="pills-home-tab">Welcome to crypto tp
                     </div>
+
                     <div className="tab-pane fade" id="pills-profile" role="tabpanel"
                          aria-labelledby="pills-profile-tab">
-
+                        <form className="mb-3" onSubmit={(event) => {
+                            event.preventDefault()
+                            let msg
+                            msg = this.msg.value.toString()
+                            this.props.md5(msg)
+                        }}>
+                            <div>
+                                <label className="float-left"><b>Hash a message in md5</b></label>
+                            </div>
+                            <div className="input-group mb-4">
+                                <input
+                                    type="text"
+                                    ref={(msg) => {
+                                        this.msg = msg
+                                    }}
+                                    className="form-control form-control-lg"
+                                    placeholder="enter msg"
+                                    required/>
+                                <div className="input-group-append">
+                                    <div className="input-text">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block btn-lg">Hash!</button>
+                        </form>
                     </div>
+
+
                 </div>
             </div>
         );
