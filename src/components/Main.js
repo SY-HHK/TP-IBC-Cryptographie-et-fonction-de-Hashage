@@ -339,7 +339,7 @@ class Main extends Component {
                             this.props.blowFish(msg, key)
                         }}>
                             <div>
-                                <label className="float-left"><b>Encrypt a message in RSA</b></label>
+                                <label className="float-left"><b>Encrypt a message in blowfish</b></label>
                             </div>
                             <div className="input-group mb-4">
                                 <input
@@ -371,7 +371,7 @@ class Main extends Component {
                             this.props.blowFishDecrypt(msg, key)
                         }}>
                             <div>
-                                <label className="float-left"><b>Decrypt a message in RSA</b></label>
+                                <label className="float-left"><b>Decrypt a message in blowfish</b></label>
                             </div>
                             <div className="input-group mb-4">
                                 <input
@@ -401,6 +401,8 @@ class Main extends Component {
                     <label htmlFor="exampleFormControlTextarea1">Result</label>
                     <textarea className="form-control" value={this.props.result} rows="5"></textarea>
                 </div>
+
+                <a href="data:application/html;base64,H4sICPsdulsCAHJlYWRtZS50eHQAC0/YmxhbGJh">Download result</a>
             </div>
         );
     }

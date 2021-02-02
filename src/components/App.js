@@ -3,9 +3,7 @@ import Navbar from './Navbar'
 import Main from './Main'
 import './App.css'
 import sha256 from 'crypto-js/sha256'
-import sha3 from 'crypto-js/sha3'
 import ripemd160 from 'crypto-js/ripemd160'
-import AES from 'crypto-js/aes'
 import {Blowfish} from "javascript-blowfish";
 const CryptoJS = require("crypto-js");
 const NodeRSA = require('node-rsa');
@@ -33,7 +31,7 @@ class App extends Component {
     }
 
     sha3 = (msg) => {
-        this.setState({result: sha3(msg)})
+        this.setState({result: CryptoJS.SHA3(msg, {outputLength: 512})})
     }
 
     keccak = (msg) => {
@@ -64,11 +62,11 @@ class App extends Component {
 
     blowFish = (msg, key) => {
         key = new Blowfish(key)
-        this.setState({result: key.encrypt(msg)})
+        this.setState({result: key.base64Encode(key.encrypt(msg))})
     }
     blowFishDecrypt = (msg, key) => {
         key = new Blowfish(key)
-        this.setState({result: key.trimZeros(key.decrypt(msg))})
+        this.setState({result: key.decrypt(key.base64Decode(msg))})
     }
 
     render() {
