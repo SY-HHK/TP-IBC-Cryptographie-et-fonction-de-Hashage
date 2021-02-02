@@ -43,7 +43,7 @@ class Main extends Component {
                         <form className="mb-3" onSubmit={(event) => {
                             event.preventDefault()
                             let msg
-                            msg = this.msg.value.toString()
+                            msg = this.msgMD5.value.toString()
                             this.props.md5(msg)
                         }}>
                             <div>
@@ -52,8 +52,8 @@ class Main extends Component {
                             <div className="input-group mb-4">
                                 <input
                                     type="text"
-                                    ref={(msg) => {
-                                        this.msg = msg
+                                    ref={(msgMD5) => {
+                                        this.msgMD5 = msgMD5
                                     }}
                                     className="form-control form-control-lg"
                                     placeholder="enter msg"
@@ -72,7 +72,7 @@ class Main extends Component {
                         <form className="mb-3" onSubmit={(event) => {
                             event.preventDefault()
                             let msg
-                            msg = this.msg.value.toString()
+                            msg = this.msgSHA2.value.toString()
                             this.props.sha2(msg)
                         }}>
                             <div>
@@ -81,8 +81,8 @@ class Main extends Component {
                             <div className="input-group mb-4">
                                 <input
                                     type="text"
-                                    ref={(msg) => {
-                                        this.msg = msg
+                                    ref={(msgSHA2) => {
+                                        this.msgSHA2 = msgSHA2
                                     }}
                                     className="form-control form-control-lg"
                                     placeholder="enter msg"
@@ -101,7 +101,7 @@ class Main extends Component {
                         <form className="mb-3" onSubmit={(event) => {
                             event.preventDefault()
                             let msg
-                            msg = this.msg.value.toString()
+                            msg = this.msgSHA3.value.toString()
                             this.props.sha3(msg)
                         }}>
                             <div>
@@ -110,8 +110,8 @@ class Main extends Component {
                             <div className="input-group mb-4">
                                 <input
                                     type="text"
-                                    ref={(msg) => {
-                                        this.msg = msg
+                                    ref={(msgSHA3) => {
+                                        this.msgSHA3 = msgSHA3
                                     }}
                                     className="form-control form-control-lg"
                                     placeholder="enter msg"
@@ -130,7 +130,7 @@ class Main extends Component {
                         <form className="mb-3" onSubmit={(event) => {
                             event.preventDefault()
                             let msg
-                            msg = this.msg.value.toString()
+                            msg = this.msgKeccak.value.toString()
                             this.props.keccak(msg)
                         }}>
                             <div>
@@ -139,8 +139,8 @@ class Main extends Component {
                             <div className="input-group mb-4">
                                 <input
                                     type="text"
-                                    ref={(msg) => {
-                                        this.msg = msg
+                                    ref={(msgKeccak) => {
+                                        this.msgKeccak = msgKeccak
                                     }}
                                     className="form-control form-control-lg"
                                     placeholder="enter msg"
@@ -159,7 +159,7 @@ class Main extends Component {
                         <form className="mb-3" onSubmit={(event) => {
                             event.preventDefault()
                             let msg
-                            msg = this.msg.value.toString()
+                            msg = this.msgRipeMd.value.toString()
                             this.props.ripemd(msg)
                         }}>
                             <div>
@@ -168,8 +168,8 @@ class Main extends Component {
                             <div className="input-group mb-4">
                                 <input
                                     type="text"
-                                    ref={(msg) => {
-                                        this.msg = msg
+                                    ref={(msgRipeMd) => {
+                                        this.msgRipeMd = msgRipeMd
                                     }}
                                     className="form-control form-control-lg"
                                     placeholder="enter msg"
@@ -188,8 +188,8 @@ class Main extends Component {
                         <form className="mb-3" onSubmit={(event) => {
                             event.preventDefault()
                             let msg, key
-                            msg = this.msg.value.toString()
-                            key = this.key.value.toString()
+                            msg = this.msgAES.value.toString()
+                            key = this.keyAES.value.toString()
                             this.props.aes(msg, key)
                         }}>
                             <div>
@@ -198,8 +198,8 @@ class Main extends Component {
                             <div className="input-group mb-4">
                                 <input
                                     type="text"
-                                    ref={(msg) => {
-                                        this.msg = msg
+                                    ref={(msgAES) => {
+                                        this.msgAES = msgAES
                                     }}
                                     className="form-control form-control-lg"
                                     placeholder="enter msg"
@@ -208,8 +208,8 @@ class Main extends Component {
                             <div className="input-group mb-4">
                                 <input
                                     type="text"
-                                    ref={(key) => {
-                                        this.key = key
+                                    ref={(keyAES) => {
+                                        this.keyAES = keyAES
                                     }}
                                     className="form-control form-control-lg"
                                     placeholder="enter key"

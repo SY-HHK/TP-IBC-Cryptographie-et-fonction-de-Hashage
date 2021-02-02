@@ -24,28 +24,28 @@ class App extends Component {
 
     md5 = (msg) => {
         const md5 = require('md5');
-        alert(md5(msg))
+        this.setState({result: md5(msg)})
     }
 
     sha2 = (msg) => {
-        alert(sha256(msg))
+        this.setState({result: sha256(msg)})
     }
 
     sha3 = (msg) => {
-        alert(sha3(msg))
+        this.setState({result: sha3(msg)})
     }
 
     keccak = (msg) => {
         const keccakHash = require('keccak')
-        alert(keccakHash('keccak256').update(msg).digest('hex'))
+        this.setState({result: keccakHash('keccak256').update(msg).digest('hex')})
     }
 
     ripemd = (msg) => {
-        alert(ripemd160(msg))
+        this.setState({result: ripemd160(msg)})
     }
 
     aes = (msg, key) => {
-        alert(CryptoJS.AES.encrypt(msg, key).toString())
+        this.setState({result: CryptoJS.AES.encrypt(msg, key).toString()})
     }
 
     rsa = (msg, key) => {
