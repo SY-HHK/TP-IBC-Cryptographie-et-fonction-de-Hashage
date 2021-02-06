@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Connect from "./Connect";
 
 class Navbar extends Component {
 
@@ -16,8 +17,7 @@ class Navbar extends Component {
 
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-            <small className="text-secondary">
-            </small>
+              <Connect connected={this.props.connected}/>
           </li>
         </ul>
       </nav>
