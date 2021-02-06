@@ -23,7 +23,7 @@ class App extends Component {
             result:'None',
             loading: false,
             api:"",
-            connected:""
+            connected: {code:0, msg:'', email:'Not connected'}
         }
     }
 
@@ -40,7 +40,7 @@ class App extends Component {
             })
             .then(res => res.text())
             .then(res => {
-                this.setState({connected: res});
+                this.setState({connected: JSON.parse(res.toString())});
                 this.render()
             })
             .catch(err => err);
@@ -102,7 +102,6 @@ class App extends Component {
             content = <Main
                 result={this.state.result}
                 api={this.state.api}
-                connected={this.state.connected}
                 connect={this.connect}
                 md5={this.md5}
                 sha2={this.sha2}

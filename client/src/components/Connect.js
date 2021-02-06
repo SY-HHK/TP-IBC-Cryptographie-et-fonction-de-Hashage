@@ -12,6 +12,7 @@ class Connect extends Component {
         else return (
             <small className="text-secondary">
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#connect">Connect</button>
+                {this.props.connected.email}
             </small>
         )
     }
