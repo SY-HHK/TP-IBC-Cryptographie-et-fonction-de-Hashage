@@ -3,9 +3,7 @@ import Navbar from './Navbar'
 import Main from './Main'
 import './App.css'
 import sha256 from 'crypto-js/sha256'
-import sha3 from 'crypto-js/sha3'
 import ripemd160 from 'crypto-js/ripemd160'
-import AES from 'crypto-js/aes'
 import {Blowfish} from "javascript-blowfish";
 const CryptoJS = require("crypto-js");
 const NodeRSA = require('node-rsa');
@@ -13,14 +11,39 @@ const NodeRSA = require('node-rsa');
 class App extends Component {
 
     async componentWillMount() {
+        fetch('http://localhost:9000/testAPI')
+            .then(res => res.text())
+            .then(res => this.setState({api: res}))
+            .catch(err => err);
     }
 
     constructor(props) {
         super(props)
         this.state = {
             result:'None',
-            loading: false
+            loading: false,
+            api:"",
+            connected: {code:0, msg:'', email:'Not connected'}
         }
+    }
+
+    connect = (email, password) => {
+        password = sha256(password).toString();
+        fetch('http://localhost:9000/connect',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: email, password: password})
+            })
+            .then(res => res.text())
+            .then(res => {
+                this.setState({connected: JSON.parse(res.toString())});
+                this.render()
+            })
+            .catch(err => err);
     }
 
     md5 = (msg) => {
@@ -33,7 +56,7 @@ class App extends Component {
     }
 
     sha3 = (msg) => {
-        this.setState({result: sha3(msg)})
+        this.setState({result: CryptoJS.SHA3(msg, {outputLength: 512})})
     }
 
     keccak = (msg) => {
@@ -64,11 +87,11 @@ class App extends Component {
 
     blowFish = (msg, key) => {
         key = new Blowfish(key)
-        this.setState({result: key.encrypt(msg)})
+        this.setState({result: key.base64Encode(key.encrypt(msg))})
     }
     blowFishDecrypt = (msg, key) => {
         key = new Blowfish(key)
-        this.setState({result: key.trimZeros(key.decrypt(msg))})
+        this.setState({result: key.decrypt(key.base64Decode(msg))})
     }
 
     render() {
@@ -78,6 +101,8 @@ class App extends Component {
         } else {
             content = <Main
                 result={this.state.result}
+                api={this.state.api}
+                connect={this.connect}
                 md5={this.md5}
                 sha2={this.sha2}
                 sha3={this.sha3}
@@ -94,7 +119,7 @@ class App extends Component {
 
         return (
             <div>
-                <Navbar/>
+                <Navbar connected={this.state.connected}/>
                 <div className="container-fluid mt-5">
                     <div className="row">
                         <main role="main" className="col-lg-12 ml-auto mr-auto" style={{maxWidth: '600px'}}>
