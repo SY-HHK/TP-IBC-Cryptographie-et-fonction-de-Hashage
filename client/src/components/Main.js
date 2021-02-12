@@ -399,10 +399,64 @@ class Main extends Component {
 
                 <div className="form-group">
                     <label htmlFor="exampleFormControlTextarea1">Result</label>
-                    <textarea className="form-control" value={this.props.result} rows="5"></textarea>
+                    <textarea className="form-control" value={this.props.result} rows="5">
+
+                    </textarea>
                 </div>
 
                 <a href="data:application/html;base64,H4sICPsdulsCAHJlYWRtZS50eHQAC0/YmxhbGJh">Download result</a>
+
+                <div className="modal fade" id="connect" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Connect</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form className="mb-3" onSubmit={(event) => {
+                                event.preventDefault()
+                                let email, password;
+                                email = this.email.value.toString()
+                                password = this.password.value.toString()
+                                this.props.connect(email, password)
+                            }}>
+                                <div className="modal-body">
+                                    <div className="mb-3">
+                                        <label htmlFor="recipient-name" className="col-form-label">Email :</label>
+                                        <input
+                                            type="email"
+                                            ref={(email) => {
+                                                this.email = email
+                                            }}
+                                            className="form-control form-control-lg"
+                                            placeholder="enter email"
+                                            required/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="recipient-name" className="col-form-label">Password :</label>
+                                        <input
+                                            type="password"
+                                            ref={(password) => {
+                                                this.password = password
+                                            }}
+                                            className="form-control form-control-lg"
+                                            placeholder="enter password"
+                                            required/>
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+                                    <button type="submit" className="btn btn-primary">Connect</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {this.props.connected}
+
             </div>
         );
     }

@@ -11,14 +11,39 @@ const NodeRSA = require('node-rsa');
 class App extends Component {
 
     async componentWillMount() {
+        fetch('http://localhost:9000/testAPI')
+            .then(res => res.text())
+            .then(res => this.setState({api: res}))
+            .catch(err => err);
     }
 
     constructor(props) {
         super(props)
         this.state = {
             result:'None',
-            loading: false
+            loading: false,
+            api:"",
+            connected: {code:0, msg:'', email:'Not connected'}
         }
+    }
+
+    connect = (email, password) => {
+        password = sha256(password).toString();
+        fetch('http://localhost:9000/connect',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: email, password: password})
+            })
+            .then(res => res.text())
+            .then(res => {
+                this.setState({connected: JSON.parse(res.toString())});
+                this.render()
+            })
+            .catch(err => err);
     }
 
     md5 = (msg) => {
@@ -76,6 +101,8 @@ class App extends Component {
         } else {
             content = <Main
                 result={this.state.result}
+                api={this.state.api}
+                connect={this.connect}
                 md5={this.md5}
                 sha2={this.sha2}
                 sha3={this.sha3}
@@ -92,7 +119,7 @@ class App extends Component {
 
         return (
             <div>
-                <Navbar/>
+                <Navbar connected={this.state.connected}/>
                 <div className="container-fluid mt-5">
                     <div className="row">
                         <main role="main" className="col-lg-12 ml-auto mr-auto" style={{maxWidth: '600px'}}>
